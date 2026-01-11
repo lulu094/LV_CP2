@@ -34,45 +34,34 @@
 #End function
 
 
-def mainmenu():
-    print("Financial Calculator Menu")
-    print("1. Savings Time Calculator")
-    print("2. Compound Interest Calculator")
-    print("3. Budget Allocator")
-    print("4. Sale Price Calculator")
-    print("5. Tip Calculator")
-    print("6. Exit")
+def main():
+    while True:
+        print("\nFinancial Calculator Menu")
+        print("1. Savings Time Calculator")
+        print("2. Compound Interest Calculator")
+        print("3. Budget Allocator")
+        print("4. Sale Price Calculator")
+        print("5. Tip Calculator")
+        print("6. Exit")
 
-    choice = input("Choose and option:")
-    if choice == "1":
-        savings_time_calc()
-    elif choice == "2":
-        compound_interest_calc()
-    elif choice == "3":
-        budget_allocator()
-    elif choice == "4":
-        sale_price_calc()
-    elif choice == "5":
-        tip_calc()
-    elif choice == "6":
-        print("Goodbye!")
-    else:
-        print("Invalid choice")
+        choice = input("Choose an option: ")
 
-def savings_time_calc():
-    print("Savings Time Calculator")
+        if choice == "1":
+            savings_time_calc()
+        elif choice == "2":
+            compound_interest_calc()
+        elif choice == "3":
+            budget_allocator()
+        elif choice == "4":
+            sale_price_calc()
+        elif choice == "5":
+            tip_calc()
+        elif choice == "6":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Try again.")
 
-def compound_interest_calc():
-        print("Compound Interest Calculator")
-
-def budget_allocator():
-        print("Budget Allocator")
-
-def sale_price_calc():
-        print("Sale Price Calculator")
-
-def tip_calc():
-        print("Tip Calculator")
 
 # Savings time calc
 # function savings_time_calc
@@ -89,18 +78,20 @@ def tip_calc():
 
 def savings_time_calc():
     goal = float(input("Enter your savings goal: "))
+    deposit = float(input("Enter how much you deposit each time: "))
 
-    deposit = float(input("Enter the amount you will deposit each time: "))
+    print("How often do you deposit?")
+    print("1. Weekly")
+    print("2. Monthly")
+    frequency = input("Choose 1 or 2: ")
 
-    frequency = input("Will you deposit weekly or monthly? ").lower()
-
-    if frequency == "weekly":
+    if frequency == "1":
         weeks_needed = goal / deposit
-        months_needed = weeks_needed / 4  # approximate weeks to months
-        print(f"It will take about {round(months_needed, 1)} months to reach your goal.")
+        months_needed = weeks_needed / 4
     else:
         months_needed = goal / deposit
-        print(f"It will take about {round(months_needed, 1)} months to reach your goal.")
+
+    print(f"It will take about {round(months_needed, 1)} months to reach your goal.")
 
 #Compound interest calculator with inner function
 #function compound_interest_calculator
@@ -118,9 +109,14 @@ def savings_time_calc():
 #end function
 
 def compound_interest_calc():
-     start = ("Enter Start Amount:")
+    start = float(input("Starting Amount: "))
+    rate = float(input("Interest Rate Percent: ")) / 100
+    years = int(input("Years Spent Compounding: "))
+    def calculate_compound():
+        return start * (1 + rate) ** years
 
-
+    final_amount = calculate_compound()
+    print(f"At the end of {years} years you will have ${round(final_amount, 2)}")
 
 #Budget allocator
 #FUNCTION budget_allocator
@@ -133,20 +129,15 @@ def compound_interest_calc():
         #CALCULATE amount based on income and percentage
         #DISPLAY result
 #END FUNCTION
-
 def budget_allocator():
-    # Ask user for monthly income
-    income = float(input("Enter your monthly income: "))
+    income = float(input("What is your monthly income: "))
+    categories = int(input("How many budget categories do you have: "))
 
-    # Ask how many budget categories
-    num_categories = int(input("How many budget categories do you have? "))
-
-    # Loop through each category
-    for i in range(num_categories):
-        name = input(f"Enter the name of category {i + 1}: ")
-        percent = float(input(f"What percent of your income goes to {name}? "))
+    for i in range(categories):
+        name = input(f"Category {i + 1} name: ")
+        percent = float(input(f"What percent is your {name}: "))
         amount = income * (percent / 100)
-        print(f"{name}: ${round(amount, 2)}")
+        print(f"{name} is ${round(amount, 2)}")
 
 #Sale price calc
 #FUNCTION sale_price_calculator
@@ -158,16 +149,11 @@ def budget_allocator():
 #END FUNCTION
 
 def sale_price_calc():
-    # Ask user for original price
-    original_price = float(input("Enter the original price: "))
+    original_price = float(input("How much does the item originally cost: "))
+    discount = float(input("What percent is the discount: "))
 
-    # Ask for discount percentage
-    discount = float(input("Enter the discount percentage: "))
-
-    # Calculate discounted price
     final_price = original_price * (1 - discount / 100)
-    print(f"The discounted price is: ${round(final_price, 2)}")
-
+    print(f"The item now costs ${round(final_price, 2)}")
 #Tip calc
 #FUNCTION tip_calculator
     #ASK user for bill amount
@@ -179,14 +165,13 @@ def sale_price_calc():
 #END FUNCTION
 
 def tip_calc():
-    # Ask user for bill amount
-    bill = float(input("Enter the bill amount: "))
+    bill = float(input("How much is the bill: "))
+    tip_percent = float(input("What percent of a tip are you giving: "))
 
-    # Ask for tip percentage
-    tip_percent = float(input("Enter the tip percentage: "))
-
-    # Calculate tip and total
     tip = bill * (tip_percent / 100)
     total = bill + tip
-    print(f"Tip amount: ${round(tip, 2)}")
-    print(f"Total bill: ${round(total, 2)}")
+
+    print(f"The tip amount is ${round(tip, 2)} and your total is ${round(total, 2)}")
+
+# Start the program 
+main()
