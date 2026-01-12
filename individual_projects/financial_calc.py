@@ -44,7 +44,7 @@ def main():
         print("5. Tip Calculator")
         print("6. Exit")
 
-        choice = input("Choose an option: ")
+        choice = input("Choose a number: ")
 
         if choice == "1":
             savings_time_calc()
@@ -60,7 +60,7 @@ def main():
             print("Goodbye!")
             break
         else:
-            print("Invalid choice. Try again.")
+            print("Invalid choice. Please choose something from the list.")
 
 
 # Savings time calc
@@ -119,16 +119,16 @@ def compound_interest_calc():
     print(f"At the end of {years} years you will have ${round(final_amount, 2)}")
 
 #Budget allocator
-#FUNCTION budget_allocator
-    #ASK user for monthly income
-    #ASK how many budget categories
+#function budget_allocator
+    #ask user for monthly income
+    #ask how many budget categories
 
-    #FOR each category
-        #ASK for category name
-        #ASK for percentage
-        #CALCULATE amount based on income and percentage
-        #DISPLAY result
-#END FUNCTION
+    #for each category
+        #ak for category name
+        #ask for percentage
+        #calculate amount based on income and percentage
+        #dsilay result
+#end function
 def budget_allocator():
     income = float(input("What is your monthly income: "))
     categories = int(input("How many budget categories do you have: "))
@@ -140,13 +140,13 @@ def budget_allocator():
         print(f"{name} is ${round(amount, 2)}")
 
 #Sale price calc
-#FUNCTION sale_price_calculator
-    #ASK user for original price
-    #ASK user for discount percentage
+#function sale_price_calculator
+    #ask user for original price
+    #ask user for discount percentage
 
-    #CALCULATE discounted price
-    #DISPLAY final sale price
-#END FUNCTION
+    #calculate discounted price
+    #display final sale price
+#end function
 
 def sale_price_calc():
     original_price = float(input("How much does the item originally cost: "))
@@ -155,14 +155,14 @@ def sale_price_calc():
     final_price = original_price * (1 - discount / 100)
     print(f"The item now costs ${round(final_price, 2)}")
 #Tip calc
-#FUNCTION tip_calculator
-    #ASK user for bill amount
-    #ASK user for tip percentage
+#function tip_calculator
+    #ask user for bill amount
+    #ask user for tip percentage
 
-    #CALCULATE tip amount
-    #CALCULATE total bill
-    #DISPLAY tip and total
-#END FUNCTION
+    #calculate tip amount
+    #calculate total bill
+    #dsiplay tip and total
+# end function
 
 def tip_calc():
     bill = float(input("How much is the bill: "))
