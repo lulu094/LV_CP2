@@ -1,67 +1,129 @@
-# LV 1st Peronal Library
-# Main Program
-# Start program
-# Call main_menu()
-"""Stores all items in a list
-Function to add a new item
-Function to search the items
-Function to remove an item
-Function that runs the code (displays the menu options inside and calls the functions inside of a while True loop)
-Project must include
-easy to understand variable and function names
-Pseudocode comments explaining what the code is doing
-Good use of white space to keep items separate and easy to read/find
-Have at least 2 people test your code before submission!"""
-# make a tuple in the main proram run while loop
-# List to store library items
-# Each item is represented as a dictionary with 'title' and 'author' keys
-# Initialize an empty list to store library items
-library_items = []
-# Function to display the main menu and get user choice
-# This function shows the available options to the user and returns their choice
-def main_menu():
-    print("\nPersonal Library Menu:")
-    print("1. View all items")
-    print("2. Add a new item")
-    print("3. Remove an item")
-    print("4. Search for an item")
-    print("5. Exit")
-    choice = int(input("Please enter your choice (1-5): ")) # make sure it is a #, so it doesn't crahs out!!!!
-    return choice
-# Function to view all items in the library
-# This function prints all the items currently stored in the library
-# If there are no items, returns to the main menu
-# Ennumarate how many items there are
-# Loop back to main menu
-def view_items():
-    if not library_items:
-        print("No items in the library.")
+# -----------------------------------------
+# personal_library_program
+# allows a user to manage a book collection
+# -----------------------------------------
+
+# PSEUDOCODE:
+# create a list to store books
+# display a menu inside a while true loop
+# ask the user what they want to do
+# call the correct function
+# exit only when the user chooses exit
+
+# tuple for menu options
+menu_options = (
+    "View all books",
+    "Add a book",
+    "Remove a book",
+    "Search for a book",
+    "Exit"
+)
+
+# list to store the library books
+library = [
+    {"title": "The Hobbit", "author": "J.R.R Tolkien"},
+    {"title": "A Wrinkle in Time", "author": "Madeleine L'Engle"},
+    {"title": "Steelheart", "author": "Brandon Sanderson"},
+    {"title": "The Giver", "author": "Lois Lowry"},
+    {"title": "Fablehaven", "author": "Brandon Mull"}
+]
+
+
+def display_menu():
+    """displays the main menu"""
+    print("\nType the number for the action you would like to perform:")
+    for index, option in enumerate(menu_options, start=1):
+        print(f"{index}. {option}")
+
+
+def view_books():
+    """displays all books in the library"""
+    if not library:
+        print("\nYour library is empty.")
+        return
+
+    print("\nYour Library:")
+    for book in library:
+        print(f"{book['title']} by {book['author']}")
+
+
+def add_book():
+    """adds a new book to the library"""
+    print("\nAdd a New Book")
+    title = input("Title: ").strip()
+    author = input("By: ").strip()
+
+    library.append({"title": title, "author": author})
+
+    print(f"\nYou have added:\n{title} by {author}")
+
+
+def remove_book():
+    """removes a book chosen by number"""
+    if not library:
+        print("\nNo books to remove.")
+        return
+
+    print("\nSelect a book to remove:")
+    for index, book in enumerate(library, start=1):
+        print(f"{index}. {book['title']} by {book['author']}")
+
+    choice = input("Enter the number of the item you would like to remove: ")
+
+    if not choice.isdigit() or int(choice) < 1 or int(choice) > len(library):
+        print("Invalid selection.")
+        return
+
+    choice = int(choice)
+    removed_book = library.pop(choice - 1)
+
+    print(f"\nYou have removed {removed_book['title']} by {removed_book['author']}")
+
+
+def search_books():
+    """searches books by title or author"""
+    print("\nWhat would you like to search by?")
+    print("1. Title")
+    print("2. Author")
+
+    choice = input("Choice: ")
+
+    if choice == "1":
+        search_term = input("Enter title keyword: ").lower()
+        for book in library:
+            if search_term in book["title"].lower():
+                print(f"{book['title']} by {book['author']}")
+
+    elif choice == "2":
+        search_term = input("Enter author's name: ").lower()
+        for book in library:
+            if search_term in book["author"].lower():
+                print(f"{book['title']} by {book['author']}")
+
     else:
-        print("\nLibrary Items:")
-        for index, item in enumerate(library_items, start=1):
-            print(f"{index}. Title: {item['title']}, Author: {item['author']}")
-        return main_menu()
+        print("Invalid search option.")
 
-# Function add a new item to the library
-# This function - the user for item details and adds it to the library list
-# If the user inputs empty strings, it will not add the item
-#Show you have aedded the item
-# they have to loop again to the main menu
-def add_item():
-    title = input("Enter the title of the item: ")
-    author = input("Enter the author of the item: ")
-    if title and author:
-        library_items.append({'title': title, 'author': author})
-        print(f"Item '{title}' by {author} added to the library.")
+
+# -----------------------
+# main program loop
+# -----------------------
+
+print("Welcome to the Personal Library Program!")
+
+while True:
+    display_menu()
+    choice = input("\nEnter your choice: ")
+
+    if choice == "1":
+        view_books()
+    elif choice == "2":
+        add_book()
+    elif choice == "3":
+        remove_book()
+    elif choice == "4":
+        search_books()
+    elif choice == "5":
+        print("\nGoodbye! Thanks for using the library.")
+        break
     else:
-        print("Title and Author cannot be empty.")
-
-# Function to remove an item from the library
-# This function - the user for the title of the item to remove
-# If the item is found, it is removed from the list
-# else print item not found
-# return to main menu
-
-# Function search for an item in the library
-#Start program
-main_menu()
+        print("Invalid option. Please try again.")
