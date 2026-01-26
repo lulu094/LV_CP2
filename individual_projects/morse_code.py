@@ -25,7 +25,8 @@ def main_menu():
             print("Please enter a valid number (1, 2, or 3).")
 
 # make a dictionary for Morse code so we caan easily use it in the tuples 
- morse_code = {
+# i need 2 lists to convert morse code an english and english to morse code
+ key = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
     'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
     'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
@@ -42,6 +43,13 @@ def main_menu():
 # has to have a space between each Morse code letter
 # Translate Morse Code to English
 # has to take user input for Morse code and convert it to English text
-def choice():
+def english_to_morse():# como hago para poder hacer que english to morse sea un function al iual que morse to enlish
+    """Translates English text to Morse code"""
+    text = input("Enter English text to translate to Morse code: ").upper()
+    morse_translation = ' '.join(key.get(char, '') for char in text)
+    print("Morse Code:", morse_translation)
+
+def morse_to_english():
+# no voy a terminar de escribir esta linea porque aun estoy intentando entender como unirlos para que sean un tuple
 
 
