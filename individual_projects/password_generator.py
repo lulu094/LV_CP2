@@ -78,3 +78,5 @@ def generate_password():
 
 # Main loop
 main_menu()
+
+# Make sure i generates 4 passwords based on user choices
