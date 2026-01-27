@@ -31,6 +31,7 @@ def english_to_morse():
     """Translate English text to Morse code"""
     # Ask the user for English input
     # Make sure the input is written in english not morse code
+    # Checking for only words but it if it has . - / that are not used in a sentence then ask them to use the correct opiton get them back to the main menu
     text = input("Enter English text to translate: ").upper()
     morse_output = []
 
@@ -51,6 +52,8 @@ def morse_to_english():
     """Translate Morse code to English text"""
     # Ask the user for Morse input
     # Make sure the input is written in morse code not english
+    # By just checking for any words that are not . - /
+    # Tell them to go to the main menu and use the correct option
     morse_input = input(
         "Enter Morse code (separate letters with spaces, words with /): "
     )
