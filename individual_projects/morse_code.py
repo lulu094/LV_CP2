@@ -26,7 +26,7 @@ morse_chars = (
     '/'
 )
 
-
+# Function to translate English to Morse code
 def english_to_morse():
     """Translate English text to Morse code"""
     # Ask the user for English input
@@ -45,7 +45,7 @@ def english_to_morse():
     print("Your message says:")
     print(' '.join(morse_output))
 
-
+# Function to translate Morse code to English
 def morse_to_english():
     """Translate Morse code to English text"""
     # Ask the user for Morse input
@@ -69,7 +69,7 @@ def morse_to_english():
     print("Your message says:")
     print(''.join(english_output).lower())
 
-
+# Function for the main menu
 def main_menu():
     """Display menu and control program flow"""
     while True:
