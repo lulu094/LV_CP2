@@ -15,7 +15,7 @@
 english_chars = (
     'A','B','C','D','E','F','G','H','I','J','K','L','M',
     'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-    '0','1','2','3','4','5','6','7','8','9',' '
+    '0','1','2','3','4','5','6','7','8','9',' ','.',',','?'
 )
 
 # Tuple of corresponding Morse code symbols
@@ -23,13 +23,14 @@ morse_chars = (
     '.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--',
     '-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..',
     '-----','.----','..---','...--','....-','.....','-....','--...','---..','----.',
-    '/'
+    '/', '.-.-.-','--..--', '..--..'
 )
 
 # Function to translate English to Morse code
 def english_to_morse():
     """Translate English text to Morse code"""
     # Ask the user for English input
+    # Make sure the input is written in english not morse code
     text = input("Enter English text to translate: ").upper()
     morse_output = []
 
@@ -49,6 +50,7 @@ def english_to_morse():
 def morse_to_english():
     """Translate Morse code to English text"""
     # Ask the user for Morse input
+    # Make sure the input is written in morse code not english
     morse_input = input(
         "Enter Morse code (separate letters with spaces, words with /): "
     )
@@ -93,3 +95,5 @@ def main_menu():
 
 # Start the program
 main_menu()
+
+# TEST THE CODE ONCE I HAVE MAE SURE THE USER INPUT IS CORRECT AND THAT EVERYTHING FROM THE RUBRIC HAS BEEN USED
