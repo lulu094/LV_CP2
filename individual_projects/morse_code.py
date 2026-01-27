@@ -1,55 +1,95 @@
 # LV 1st Simple Morse Code Translator
 
-# Main menu function
-# has to let the user choose wether they want to translate English to Morse code or Morse code to English
-# Translate English to Morse code - 1
-# Translate Morse code to English - 2
-# Exit - 3
+
+# 1. Display a main menu with three options
+# 2. If user chooses English to Morse:
+#       - Ask for English input
+#       - Convert each character to Morse using tuples
+# 3. If user chooses Morse to English:
+#       - Ask for Morse input
+#       - Convert each Morse symbol to English using tuples
+# 4. Repeat menu until user chooses Exit
+
+
+# Tuple of English characters
+english_chars = (
+    'A','B','C','D','E','F','G','H','I','J','K','L','M',
+    'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+    '0','1','2','3','4','5','6','7','8','9',' '
+)
+
+# Tuple of corresponding Morse code symbols
+morse_chars = (
+    '.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--',
+    '-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..',
+    '-----','.----','..---','...--','....-','.....','-....','--...','---..','----.',
+    '/'
+)
+
+
+def english_to_morse():
+    """Translate English text to Morse code"""
+    # Ask the user for English input
+    text = input("Enter English text to translate: ").upper()
+    morse_output = []
+
+    # Convert each character to Morse
+    for char in text:
+        if char in english_chars:
+            index = english_chars.index(char)
+            morse_output.append(morse_chars[index])
+        else:
+            morse_output.append('?')  # Error handling
+
+    # Display the translated message
+    print("Your message says:")
+    print(' '.join(morse_output))
+
+
+def morse_to_english():
+    """Translate Morse code to English text"""
+    # Ask the user for Morse input
+    morse_input = input(
+        "Enter Morse code (separate letters with spaces, words with /): "
+    )
+    english_output = []
+
+    # Split Morse code into symbols
+    symbols = morse_input.split()
+
+    # Convert each Morse symbol to English
+    for symbol in symbols:
+        if symbol in morse_chars:
+            index = morse_chars.index(symbol)
+            english_output.append(english_chars[index])
+        else:
+            english_output.append('?')  # Error handling
+
+    # Display the translated message
+    print("Your message says:")
+    print(''.join(english_output).lower())
+
+
 def main_menu():
-    """Displays the main menu and handles user input"""
+    """Display menu and control program flow"""
     while True:
-        print("Main Menu:")
-        print("1. Translate English to Morse Code")
-        print("2. Translate Morse Code to English")
+        print("\nSimple Morse Code Translator")
+        print("1. Translate Morse Code to English")
+        print("2. Translate English to Morse Code")
         print("3. Exit")
-        choice = input("Please choose an option (1, 2, or 3): ")
-        
+
+        choice = input("Choose an option (1, 2, or 3): ")
+
         if choice == '1':
-            english_to_morse()
-        elif choice == '2':
             morse_to_english()
+        elif choice == '2':
+            english_to_morse()
         elif choice == '3':
             print("Goodbye!")
             break
         else:
-            print("Please enter a valid number (1, 2, or 3).")
-
-# make a dictionary for Morse code so we caan easily use it in the tuples 
-# i need 2 lists to convert morse code an english and english to morse code
- key = {
-    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
-    'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
-    'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
-    'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
-    'Y': '-.--', 'Z': '--..',
-    '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
-    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
-    ' ': '/'
-}
-
-# smehow i need to ut translate enlish to morse and morse to english in a tuple so it is not repetitive
-# Translate English to Morse Code
-# has to take user input for English text and convert it to Morse code
-# has to have a space between each Morse code letter
-# Translate Morse Code to English
-# has to take user input for Morse code and convert it to English text
-def english_to_morse():# como hago para poder hacer que english to morse sea un function al iual que morse to enlish
-    """Translates English text to Morse code"""
-    text = input("Enter English text to translate to Morse code: ").upper()
-    morse_translation = ' '.join(key.get(char, '') for char in text)
-    print("Morse Code:", morse_translation)
-
-def morse_to_english():
-# no voy a terminar de escribir esta linea porque aun estoy intentando entender como unirlos para que sean un tuple
+            print("Please enter a valid option.")
 
 
+# Start the program
+main_menu()
