@@ -26,51 +26,73 @@ morse_chars = (
     '/', '.-.-.-','--..--', '..--..'
 )
 
+def is_valid_english(text):
+    """Return True if text contains only valid English characters"""
+    for char in text.upper():
+        if char not in english_chars:
+            return False
+    return True
+
 # Function to translate English to Morse code
 def english_to_morse():
-    """Translate English text to Morse code"""
     # Ask the user for English input
     # Make sure the input is written in english not morse code
     # Checking for only words but it if it has . - / that are not used in a sentence then ask them to use the correct opiton get them back to the main menu
+
     text = input("Enter English text to translate: ").upper()
+
+    # Validate input
+    if not is_valid_english(text):
+        print("Invalid input.")
+        print("Please use English letters, numbers, spaces, or . , ? only.")
+        print("Returning to main menu.")
+        return
+
     morse_output = []
 
-    # Convert each character to Morse
     for char in text:
-        if char in english_chars:
-            index = english_chars.index(char)
-            morse_output.append(morse_chars[index])
-        else:
-            morse_output.append('?')  # Error handling
+        index = english_chars.index(char)
+        morse_output.append(morse_chars[index])
 
-    # Display the translated message
     print("Your message says:")
     print(' '.join(morse_output))
 
+
+def is_valid_morse(text):
+    """Return True if text contains only valid Morse characters"""
+    allowed = {'.', '-', '/', ' '}
+    for char in text:
+        if char not in allowed:
+            return False
+    return True
+
 # Function to translate Morse code to English
 def morse_to_english():
-    """Translate Morse code to English text"""
-    # Ask the user for Morse input
-    # Make sure the input is written in morse code not english
-    # By just checking for any words that are not . - /
-    # Tell them to go to the main menu and use the correct option
+    # Ask the user for English input
+    # Make sure the input is written in english not morse code
+    # Checking for only words but it if it has . - / that are not used in a sentence then ask them to use the correct opiton get them back to the main menu
+
     morse_input = input(
         "Enter Morse code (separate letters with spaces, words with /): "
     )
-    english_output = []
 
-    # Split Morse code into symbols
+    # Validate input
+    if not is_valid_morse(morse_input):
+        print("Invalid input.")
+        print("Please use only '.', '-', '/', and spaces.")
+        print("Returning to main menu.")
+        return
+
+    english_output = []
     symbols = morse_input.split()
 
-    # Convert each Morse symbol to English
     for symbol in symbols:
         if symbol in morse_chars:
             index = morse_chars.index(symbol)
             english_output.append(english_chars[index])
         else:
-            english_output.append('?')  # Error handling
+            english_output.append('?')
 
-    # Display the translated message
     print("Your message says:")
     print(''.join(english_output).lower())
 
