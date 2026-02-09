@@ -1,58 +1,20 @@
 # LV 1st Movie 
-#
+
 # This program recommends movies to the user using information stored
-# in a CSV file called "movies.csv".
-#
+
 # The CSV file is read at the start of the program and each movie is
 # stored as a dictionary inside a list. Each movie dictionary contains:
 # title, year, genres, director, actors, and length.
-#
+
 # While loading the CSV file, text data is cleaned by trimming spaces
 # and converting strings to lowercase so that searches are not affected
 # by capitalization.
-#
+
 # The program includes separate functions to filter movies by:
 # - Genre
 # - Director
 # - Actor
 # - Length
-#
-# Each filter function loops through the current list of movies and
-# returns a smaller list that only includes movies matching the user’s
-# input.
-#
-# After loading the movie list, the program displays a main menu that
-# continues to run until the user chooses to exit.
-#
-# MAIN MENU OPTIONS:
-# 1. Search / Get Recommendations
-#    - The user selects one or more filters to apply.
-#    - The program starts with the full movie list and applies each
-#      selected filter one at a time, narrowing the list.
-#
-# 2. Print Full Movie List
-#    - Displays every movie from the CSV file in a formatted output.
-#
-# 3. Exit
-#    - Stops the program.
-#
-# SEARCH PROCESS:
-# When searching, the user chooses filters by number.
-# For each selected filter, the program asks the user for input and
-# updates the movie list by calling the matching filter function.
-#
-# For genre and actor filters, a movie matches if any genre or actor
-# contains the user’s input.
-#
-# For the length filter, the user may enter a minimum length, a maximum
-# length, or both.
-#
-# If no movies match all selected filters, the program displays a
-# message telling the user there were no matching results.
-#
-# After displaying results, the program returns to the main menu and
-# continues running until the user chooses to exit.
-
 import csv
 def filter_by_genre(movies, genre):
     results = []
@@ -62,6 +24,42 @@ def filter_by_genre(movies, genre):
                 results.append(movie)
                 break
     return results
+
+# Each filter function loops through the current list of movies and
+# returns a smaller list that only includes movies matching the user’s
+# input.
+
+# After loading the movie list, the program displays a main menu that
+# continues to run until the user chooses to exit.
+
+# MAIN MENU OPTIONS:
+# 1. Search / Get Recommendations
+#    - The user selects one or more filters to apply.
+#    - The program starts with the full movie list and applies each
+#      selected filter one at a time, narrowing the list.
+
+# 2. Print Full Movie List
+#    - Displays every movie from the CSV file in a formatted output.
+
+# 3. Exit
+#    - Stops the program.
+
+# SEARCH PROCESS:
+# When searching, the user chooses filters by number.
+# For each selected filter, the program asks the user for input and
+# updates the movie list by calling the matching filter function.
+
+# For genre and actor filters, a movie matches if any genre or actor
+# contains the user’s input.
+
+# For the length filter, the user may enter a minimum length, a maximum
+# length, or both.
+
+# If no movies match all selected filters, the program displays a
+# message telling the user there were no matching results.
+
+# After displaying results, the program returns to the main menu and
+# continues running until the user chooses to exit.
 
 
 def filter_by_director(movies, director):
