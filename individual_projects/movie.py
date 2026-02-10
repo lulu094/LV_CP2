@@ -31,37 +31,6 @@ def filter_by_genre(movies, genre):
 
 # After loading the movie list, the program displays a main menu that
 # continues to run until the user chooses to exit.
-
-# MAIN MENU OPTIONS:
-# 1. Search / Get Recommendations
-#    - The user selects one or more filters to apply.
-#    - The program starts with the full movie list and applies each
-#      selected filter one at a time, narrowing the list.
-
-# 2. Print Full Movie List
-#    - Displays every movie from the CSV file in a formatted output.
-
-# 3. Exit
-#    - Stops the program.
-
-# SEARCH PROCESS:
-# When searching, the user chooses filters by number.
-# For each selected filter, the program asks the user for input and
-# updates the movie list by calling the matching filter function.
-
-# For genre and actor filters, a movie matches if any genre or actor
-# contains the user’s input.
-
-# For the length filter, the user may enter a minimum length, a maximum
-# length, or both.
-
-# If no movies match all selected filters, the program displays a
-# message telling the user there were no matching results.
-
-# After displaying results, the program returns to the main menu and
-# continues running until the user chooses to exit.
-
-
 def filter_by_director(movies, director):
     results = []
     for movie in movies:
@@ -143,6 +112,22 @@ def print_movies(movies):
     for i, movie in enumerate(movies, start=1):
         print_movie(movie, i)
 
+# SEARCH PROCESS:
+# When searching, the user chooses filters by number.
+# For each selected filter, the program asks the user for input and
+# updates the movie list by calling the matching filter function.
+
+# For genre and actor filters, a movie matches if any genre or actor
+# contains the user’s input.
+
+# For the length filter, the user may enter a minimum length, a maximum
+# length, or both.
+
+# If no movies match all selected filters, the program displays a
+# message telling the user there were no matching results.
+
+# After displaying results, the program returns to the main menu and
+# continues running until the user chooses to exit.
 
 def search_movies(movies):
     """Interactive search flow."""
@@ -183,6 +168,17 @@ def search_movies(movies):
         print("\nResults:\n")
         print_movies(filtered)
 
+# MAIN MENU OPTIONS:
+# 1. Search / Get Recommendations
+#    - The user selects one or more filters to apply.
+#    - The program starts with the full movie list and applies each
+#      selected filter one at a time, narrowing the list.
+
+# 2. Print Full Movie List
+#    - Displays every movie from the CSV file in a formatted output.
+
+# 3. Exit
+#    - Stops the program.
 
 def main():
     movies = load_movies(movie_file)
