@@ -65,7 +65,7 @@ def filter_by_length(movies, min_len, max_len):
     return results
 
 
-movie_file = "movies.csv"
+movie_file ="individual_projects/Movies list - Sheet1 (1).csv"
 
 def load_movies(filename):
     """Load and normalize movie data from CSV."""
@@ -186,6 +186,8 @@ def main():
     print("Movie Recommender")
     print("Find movies using genre, director, actor, and length filters.")
 
+    print(f"{len(movies)} movies loaded.")
+    
     while True:
         print("\nMain Menu")
         print("1. Search / Get Recommendations")
@@ -205,3 +207,4 @@ def main():
             print("Invalid choice. Please try again.")
 
 main()
+
