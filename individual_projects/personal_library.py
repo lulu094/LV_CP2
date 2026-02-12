@@ -1,4 +1,38 @@
-# LV 1st Personal Project
+# LV 1st Personal Project and Update Personal Library
+
+# Update Personal Library Pseudocode
+# Need dictionaries with each library item and have tuples
+# Changes and books have to be saved in a txt file "library.txt"
+# The main menu will have more options
+# Show simple list
+# Show detailed list
+# Add item
+# Update item
+# Delete item
+# Save library
+# Reload library from file
+# Exit (prompt to save if changes)
+
+
+# then show
+# Title:
+# Creator (author/artist/director):
+# Year:
+# Genre:
+# Optional: format, rating, notes
+
+# keep the main code of the personal library just update it witht the new requirements
+# when showing simple library
+# 
+# when showing detailed list
+#
+# Reload - just restart with the list with the original list
+
+# when exiting make sure to ask the user if they want to save their changes and if they want to do it again once said godbye
+# 
+
+# Personal Library Pseudocode
+
 # allows a user to manage a book collection
 
 # create a list to store books
@@ -8,7 +42,7 @@
 # exit only when the user chooses exit
 
 # tuple for menu options
-menuOptions = (
+menuoptions = (
     "View all books",
     "Add a book",
     "Remove a book",
@@ -30,10 +64,10 @@ library = [
 #     display menu instructions
 #     loop through menu options
 #     display option number and text
-def displayMenu():
+def displaymenu():
     """Displays the main menu"""
     print("\nType the number for the action you would like to perform:")
-    for index, option in enumerate(menuOptions, start=1):
+    for index, option in enumerate(menuoptions, start=1):
         print(f"{index}. {option}")
 
 # define function view_books
@@ -42,7 +76,7 @@ def displayMenu():
 #     else
 #         loop through library
 #         display each book's title and author
-def viewBooks():
+def viewbooks():
     """Displays all books in the library"""
     if not library:
         print("\nYour library is empty.")
@@ -57,7 +91,7 @@ def viewBooks():
 #     ask user for author name
 #     add new book to library
 #     display confirmation message
-def addBook():
+def addbook():
     """Adds a new book to the library"""
     print("\nAdd a New Book")
     title = input("Title: ").strip()
@@ -77,7 +111,7 @@ def addBook():
 #     else
 #         remove selected book from library
 #         display confirmation message
-def removeBook():
+def removebook():
     """Removes a book chosen by number"""
     if not library:
         print("\nNo books to remove.")
@@ -111,7 +145,7 @@ def removeBook():
 #             display book
 #     else
 #         display invalid option message
-def searchBooks():
+def searchbooks():
     """Searches books by title or author"""
     print("\nWhat would you like to search by?")
     print("1. Title")
@@ -157,17 +191,17 @@ def searchBooks():
 print("Welcome to the Personal Library Program!")
 
 while True:
-    displayMenu()
+    displaymenu()
     choice = input("\nEnter your choice: ")
 
     if choice == "1":
-        viewBooks()
+        viewbooks()
     elif choice == "2":
-        addBook()
+        addbook()
     elif choice == "3":
-        removeBook()
+        removebook()
     elif choice == "4":
-        searchBooks()
+        searchbooks()
     elif choice == "5":
         print("\nGoodbye! Thanks for using the library.")
         break
