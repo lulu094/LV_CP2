@@ -1,209 +1,279 @@
 # LV 1st Personal Project and Update Personal Library
 
-# Update Personal Library Pseudocode
-# Need dictionaries with each library item and have tuples
-# Changes and books have to be saved in a txt file "library.txt"
-# The main menu will have more options
-# Show simple list
-# Show detailed list
-# Add item
-# Update item
-# Delete item
-# Save library
-# Reload library from file
-# Exit (prompt to save if changes)
-
-
-# then show
-# Title:
-# Creator (author/artist/director):
-# Year:
-# Genre:
-# Optional: format, rating, notes
-
-# keep the main code of the personal library just update it witht the new requirements
-# when showing simple library
-# 
-# when showing detailed list
-#
-# Reload - just restart with the list with the original list
-
-# when exiting make sure to ask the user if they want to save their changes and if they want to do it again once said godbye
-# 
-
-# Personal Library Pseudocode
+# Persoanl Library
 
 # allows a user to manage a book collection
-
 # create a list to store books
 # display a menu inside a while true loop
 # ask the user what they want to do
 # call the correct function
 # exit only when the user chooses exit
 
-# tuple for menu options
-menuoptions = (
-    "View all books",
-    "Add a book",
-    "Remove a book",
-    "Search for a book",
-    "Exit"
-)
 
-# list to store the library books
-library = [
-    {"title": "The Hobbit", "author": "J.R.R Tolkien"},
-    {"title": "A Wrinkle in Time", "author": "Madeleine L'Engle"},
-    {"title": "Steelheart", "author": "Brandon Sanderson"},
-    {"title": "The Giver", "author": "Lois Lowry"},
-    {"title": "Fablehaven", "author": "Brandon Mull"}
-]
+# UPDATE PERSONAL LIBRARY 
 
 
-# define function display_menu
-#     display menu instructions
-#     loop through menu options
-#     display option number and text
-def displaymenu():
-    """Displays the main menu"""
-    print("\nType the number for the action you would like to perform:")
-    for index, option in enumerate(menuoptions, start=1):
-        print(f"{index}. {option}")
+# library must now be a list of dictionaries
+# each dictionary contains:
+# title, creator, year, genre, format, rating, notes
 
-# define function view_books
-#     if library is empty
-#         display "library is empty"
-#     else
-#         loop through library
-#         display each book's title and author
-def viewbooks():
-    """Displays all books in the library"""
+# data must be saved to:
+# individual_projects/library.txt
+
+# when program starts:
+#     load library from file
+#     if file does not exist:
+#         create it
+
+# menu must include:
+# show simple list (title + creator)
+# show detailed list (all fields)
+# add item
+# update item
+# delete item
+# save library
+# reload library from file
+# exit (ask to save if unsaved changes)
+
+# file format per line:
+# title|creator|year|genre|format|rating|notes
+
+
+import os
+
+file_path = "individual_projects/library.txt"
+
+
+def load_library(path):
+    """Load the library from file. Create file if it does not exist."""
+    library = []
+    os.makedirs("individual_projects", exist_ok=True)
+
+    if not os.path.exists(path):
+        open(path, "w").close()
+        return library
+
+    with open(path, "r") as file:
+        for line in file:
+            parts = line.strip().split("|")
+            if len(parts) == 7:
+                try:
+                    library.append({
+                        "title": parts[0],
+                        "creator": parts[1],
+                        "year": int(parts[2]),
+                        "genre": parts[3],
+                        "format": parts[4],
+                        "rating": parts[5],
+                        "notes": parts[6]
+                    })
+                except ValueError:
+                    print("Warning: Skipping invalid row.")
+            else:
+                print("Warning: Skipping malformed row.")
+
+    return library
+
+
+def save_library(path, library):
+    """Save the library to file."""
+    with open(path, "w") as file:
+        for item in library:
+            line = "|".join([
+                item["title"],
+                item["creator"],
+                str(item["year"]),
+                item["genre"],
+                item["format"],
+                item["rating"],
+                item["notes"]
+            ])
+            file.write(line + "\n")
+    print("Library saved successfully.")
+
+
+def show_simple(library):
+    """Display library with only title and creator."""
     if not library:
-        print("\nYour library is empty.")
+        print("Library is empty.")
         return
+    for index, item in enumerate(library, start=1):
+        print(f"{index}. {item['title']} by {item['creator']}")
 
-    print("\nYour Library:")
-    for title, author in library:
-        print(f"{title} by {author}")
 
-# define function add_book
-#     ask user for book title
-#     ask user for author name
-#     add new book to library
-#     display confirmation message
-def addbook():
-    """Adds a new book to the library"""
-    print("\nAdd a New Book")
+def show_detailed(library):
+    """Display all fields of each item in the library."""
+    if not library:
+        print("Library is empty.")
+        return
+    for index, item in enumerate(library, start=1):
+        print(f"\nIndex: {index}")
+        for key, value in item.items():
+            print(f"{key.capitalize()}: {value}")
+
+
+def add_item(library):
+    """Add a new item to the library."""
+    print("\nAdd a New Item")
     title = input("Title: ").strip()
-    author = input("By: ").strip()
+    creator = input("Creator (author/artist/director): ").strip()
 
-    library.append((title, author))
-    print(f"\nYou have added:\n{title} by {author}")
+    while True:
+        year_input = input("Year: ").strip()
+        if year_input.isdigit():
+            year = int(year_input)
+            break
+        print("Invalid year. Please enter a number.")
 
-# define function remove_book
-#     if library is empty
-#         display "no books to remove"
-#         return
-#     display numbered list of books
-#     ask user to choose a book number
-#     if choice is invalid
-#         display error message
-#     else
-#         remove selected book from library
-#         display confirmation message
-def removebook():
-    """Removes a book chosen by number"""
+    genre = input("Genre: ").strip()
+    format_type = input("Format (optional): ").strip()
+    rating = input("Rating (optional): ").strip()
+    notes = input("Notes (optional): ").strip()
+
+    library.append({
+        "title": title,
+        "creator": creator,
+        "year": year,
+        "genre": genre,
+        "format": format_type,
+        "rating": rating,
+        "notes": notes
+    })
+    print("Item added successfully.")
+    return True
+
+
+def update_item(library):
+    """Update an existing item."""
+    show_simple(library)
     if not library:
-        print("\nNo books to remove.")
-        return
+        return False
 
-    print("\nSelect a book to remove:")
-    for index, (title, author) in enumerate(library, start=1):
-        print(f"{index}. {title} by {author}")
-
-    choice = input("Enter the number of the item you would like to remove: ")
-
+    choice = input("Enter number of item to update: ")
     if not choice.isdigit() or int(choice) < 1 or int(choice) > len(library):
         print("Invalid selection.")
-        return
+        return False
 
-    removedBook = library.pop(int(choice) - 1)
-    print(f"\nYou have removed {removedBook[0]} by {removedBook[1]}")
+    item = library[int(choice) - 1]
+    print("Press Enter to keep current value.")
 
-# define function search_books
-#     display search options (title or author)
-#     ask user for choice
-#     if searching by title
-#         ask for title keyword
-#         loop through library
-#         if keyword is in book title
-#             display book
-#     else if searching by author
-#         ask for author name
-#         loop through library
-#         if name is in book author
-#             display book
-#     else
-#         display invalid option message
-def searchbooks():
-    """Searches books by title or author"""
-    print("\nWhat would you like to search by?")
+    for key in item:
+        new_value = input(f"{key.capitalize()} ({item[key]}): ")
+        if new_value:
+            if key == "year":
+                if new_value.isdigit():
+                    item[key] = int(new_value)
+                else:
+                    print("Invalid year. Keeping old value.")
+            else:
+                item[key] = new_value
+    print("Item updated successfully.")
+    return True
+
+
+def delete_item(library):
+    """Delete an item from the library."""
+    show_simple(library)
+    if not library:
+        return False
+
+    choice = input("Enter number of item to delete: ")
+    if not choice.isdigit() or int(choice) < 1 or int(choice) > len(library):
+        print("Invalid selection.")
+        return False
+
+    removed = library.pop(int(choice) - 1)
+    print(f"Removed {removed['title']}.")
+    return True
+
+
+def search_items(library):
+    """Search items by title or creator."""
+    print("\nSearch by:")
     print("1. Title")
-    print("2. Author")
-
+    print("2. Creator")
     choice = input("Choice: ")
 
     if choice == "1":
-        searchTerm = input("Enter title keyword: ").lower()
-        for title, author in library:
-            if searchTerm in title.lower():
-                print(f"{title} by {author}")
-
+        keyword = input("Enter title keyword: ").lower()
+        found = False
+        for item in library:
+            if keyword in item["title"].lower():
+                print(f"{item['title']} by {item['creator']}")
+                found = True
+        if not found:
+            print("No items found.")
     elif choice == "2":
-        searchTerm = input("Enter author's name: ").lower()
-        for title, author in library:
-            if searchTerm in author.lower():
-                print(f"{title} by {author}")
-
+        keyword = input("Enter creator keyword: ").lower()
+        found = False
+        for item in library:
+            if keyword in item["creator"].lower():
+                print(f"{item['title']} by {item['creator']}")
+                found = True
+        if not found:
+            print("No items found.")
     else:
-        print("Invalid search option.")
+        print("Invalid choice.")
 
-# main program loop
 
-# display welcome message
+def display_menu(menu_options):
+    """Display the main menu."""
+    print("\nType the number for the action you would like to perform:")
+    for index, option in enumerate(menu_options, start=1):
+        print(f"{index}. {option}")
 
-# while program is running
-#     call display_menu
-#     ask user for menu choice
-#     if choice is 1
-#         call view_books
-#     else if choice is 2
-#         call add_book
-#     else if choice is 3
-#         call remove_book
-#     else if choice is 4
-#         call search_books
-#     else if choice is 5
-#         display goodbye message
-#         exit loop
-#     else
-#         display invalid choice message
+
+# Main program loop
+
+menu_options = (
+    "Show simple list",
+    "Show detailed list",
+    "Add item",
+    "Update item",
+    "Delete item",
+    "Save library",
+    "Reload library from file",
+    "Exit"
+)
+
+library = load_library(file_path)
+unsaved_changes = False
+
 print("Welcome to the Personal Library Program!")
 
 while True:
-    displaymenu()
-    choice = input("\nEnter your choice: ")
+    display_menu(menu_options)
+    choice = input("\nEnter your choice: ").strip()
 
     if choice == "1":
-        viewbooks()
+        show_simple(library)
     elif choice == "2":
-        addbook()
+        show_detailed(library)
     elif choice == "3":
-        removebook()
+        if add_item(library):
+            unsaved_changes = True
     elif choice == "4":
-        searchbooks()
+        if update_item(library):
+            unsaved_changes = True
     elif choice == "5":
-        print("\nGoodbye! Thanks for using the library.")
+        if delete_item(library):
+            unsaved_changes = True
+    elif choice == "6":
+        save_library(file_path, library)
+        unsaved_changes = False
+    elif choice == "7":
+        if unsaved_changes:
+            save_prompt = input("Unsaved changes will be lost. Continue? (y/n): ").lower()
+            if save_prompt != "y":
+                continue
+        library = load_library(file_path)
+        unsaved_changes = False
+    elif choice == "8":
+        if unsaved_changes:
+            save_prompt = input("Save changes before exiting? (y/n): ").lower()
+            if save_prompt == "y":
+                save_library(file_path, library)
+        print("Goodbye! Thanks for using the library.")
         break
     else:
         print("Invalid option. Please try again.")
