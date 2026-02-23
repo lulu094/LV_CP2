@@ -13,12 +13,13 @@
     # print "4. Exit"
 
 def display_menu():
-    print "--- Document Word Count Updater ---"
-    print "1. Update document info"
-    print "2. View document"
-    print "3. Add content to document"
-    print "4. Exit"
-
+    print("--- Document Word Count Updater ---")
+    print("1. Update document info")
+    print("2. View document")
+    print("3. Add content to document")
+    print("4. Exit")    # DEFINIR TODO YA QUE EL MENU NO FUNCIONA PERO NO SE COMO HACERLO FUNCIONAR, CREO QUE HAY QUE DEFINIR LAS FUNCIONES DE FILE HANDLING ANTES DE DEFINIR EL MENU, PERO NO SE COMO HACERLO, SI LO HAGO ANTES DE DEFINIR EL MENU, EL MENU NO VA A PODER LLAMAR A LAS FUNCIONES DE FILE HANDLING, PERO SI LO HAGO DESPUES DEL MENU, EL MENU NO VA A PODER LLAMAR A LAS FUNCIONES DE FILE HANDLING, ASI QUE NO SE COMO HACERLO FUNCIONAR, SI ALGUIEN ME PUEDE AYUDAR A HACERLO FUNCIONAR, SE LOS AGRADECERIA MUCHO
+    # TENGO QUE UNIR LAS OPCIONES CON EL MENU PORQUE NO QUIERE CORRER EL CODIGO
+    
 # define function main()
 def main():
     # create variable document_path
@@ -84,3 +85,4 @@ def main():
     return
 # call main() to start program
 main()
+# TODOS MIS FILES TIENEN QUE UNIRSE EN UN PUNTO Y ESO ES MAIN   
