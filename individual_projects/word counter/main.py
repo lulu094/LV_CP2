@@ -5,6 +5,12 @@
 # import add_content_to_document from file_handling
 # import update_document_info from file_handling
 
+from file_handling import (
+    view_document,
+    add_content_to_document,
+    update_document_info
+)
+
 # define function display_menu()
     # print "--- Document Word Count Updater ---"
     # print "1. Update document info"
