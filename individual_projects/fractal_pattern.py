@@ -2,62 +2,176 @@
 
 # import turtle
 
-# REQUIREMENTS
-# Let the user customize the recursion depth and color of the fractal
-# Make Turtle draw he Sierpinski Triangle wiht what the user has chosen
-# Recursion depth should be between 1 and 5
-# Use Base Case in recursion to stop it from being infinite
-# If I can figure it out make a Joch Snowflake
+import turtle
 
-# dictiionary of colors
-# Red - #FF0000
-# Green - #00FF00
-# Purple - #800080
-# Blue - #0000FF
-# Yellow - #FFFF00
+# 1. Use Python's turtle module to draw a fractal.
+# 2. Generate a Sierpinski Triangle using recursion.
+# 3. Allow the user to:
+#       - Choose recursion depth (between 1 and 5)
+#       - Choose triangle color
+#       - Choose background color (optional / extra credit)
+# 4. Implement a proper base case to prevent infinite recursion.
+# 5. Print "Fractal Generated Successfully" after drawing is complete.
+# 6. Ask the user if they would like to exit or return to the main menu.
+# 7. (Optional Extra Credit)
+#       - Save the fractal as an image file.
+#       - Implement a second fractal (Koch Snowflake).
 
-# Main Menu
-# Welcome user
-# ask for how they want their depth to be range 1-5
-# Ask for the color they want but check it with the colors turtle accepts
-# Ask user if they want to change the background color
-# print "Fractal Generated Successfully" after the fractal is generated
-# Have to Print it in MAIN or THE FUNCTION WHERE THEY ARE DRAWING THE TRIANGLES 
-# drawing the Sierpinski Triangle
-# Check if the color the user has chosen is not the sam eone as the background color
-# Once drawn ask user if they want to leave 
-# let them choose 3 different colors or so so that the process of drawing it can actually see it
-# If == yes:
-# print "Gooodbye, Thank You for using the Fractal Generator"
-# if == no:
-# Get them back to main
-# Else:
-# "Invalid input, please try again"
+# MAIN FUNCTION:
+#   Display welcome message.
+#   Ask user for recursion depth (must be between 1 and 5).
+#   Validate depth input.
+#   Ask user for triangle color.
+#   Ask user for background color.
+#   Make sure triangle color is different from background color.
+#   Set up turtle screen and background.
+#   Move turtle to starting position.
+#   Call recursive Sierpinski function.
+#   Print "Fractal Generated Successfully".
+#   Ask user if they want to exit.
+#       If yes:
+#           Print goodbye message and close program.
+#       If no:
+#           Restart program.
+#       Else:
+#           Print invalid input message.
 
-# do the depth the user has chosen
-# User color has chosen
-# make turtle draw the Sierpinski Triangle, but as it adds depth make turtle go to the mid point of the triangle to mke the next triangle
-# Make turtle  draw it 
-# Make sure when it turns, the turn is percise so it can actually draw a triangle
-# Set the length, don't let the user choose the length of the big main triangle
-# Once we have how much we want turtle to go forward and turn we need to make it run  4 times so it makes a triangle
+def main():
 
-# def sierpinski_triangle(t, depth):
-#     if depth == 0:            
-#         for _ in range(3):
-#             t.forward(100)
-#             t.left(120)
-#     else:
-#         sierpinski_triangle(t, depth - 1)
-#         t.forward(100)
-#         sierpinski_triangle(t, depth - 1) 
-#         t.forward(100)
-#         sierpinski_triangle(t, depth - 1)
+    while True:
 
-# Inside the Sierpinski Triangle
-# Recursion depth input
-# Recursion will make turtle draw the triangle from the most tiny ones to the biggest one
-# Makes sure the loop is not infinite by using the base case of depth == 0 - base case
+        print("\nWelcome to the Sierpinski Triangle Generator!")
 
-# Make turtle or the terminal write "Fractal Generated succesfully" add it to this function
+        # Get user inputs
+        depth = get_valid_depth()
+        triangle_color = input("Enter triangle color: ")
+        bg_color = input("Enter background color: ")
 
+        # Check if triangle color equals background color
+        if triangle_color.lower() == bg_color.lower():
+            print("Triangle color cannot be the same as background color.")
+            continue
+
+        # Setup turtle
+        screen, t = setup_turtle(bg_color)
+
+        # Draw fractal
+        sierpinski_triangle(t, 400, depth, triangle_color)
+
+        print("Fractal Generated Successfully!")
+
+        # Ask user if they want to exit
+        choice = input("Would you like to exit? (yes/no): ").lower()
+
+        if choice == "yes":
+            print("Goodbye, Thank You for using the Fractal Generator!")
+            turtle.bye()
+            break
+
+        elif choice == "no":
+            turtle.bye()  # close current window and restart
+            continue
+
+        else:
+            print("Invalid input, restarting program.")
+            turtle.bye()
+            continue
+
+# FUNCTION sierpinski_triangle(turtle, length, depth, color):
+
+#   IF depth == 0:            ← BASE CASE
+#       Draw one filled triangle.
+#       Return.
+
+#   ELSE:                     ← RECURSIVE CASE
+#       1. Draw bottom-left smaller triangle
+#          Call sierpinski_triangle with:
+#               length / 2
+#               depth - 1
+#
+#       2. Move turtle to bottom-right position.
+#          Call sierpinski_triangle with:
+#               length / 2
+#               depth - 1
+#
+#       3. Move turtle to top-middle position.
+#          Call sierpinski_triangle with:
+#               length / 2
+#               depth - 1
+#
+#       4. Return turtle to original position.
+def setup_turtle(bg_color):
+
+    screen = turtle.Screen()
+    screen.bgcolor(bg_color)
+
+    t = turtle.Turtle()
+    t.speed(0)
+    t.hideturtle()
+
+    t.penup()
+    t.goto(-200, -150)
+    t.pendown()
+
+    return screen, t
+
+def sierpinski_triangle(t, length, depth, color):
+
+    if depth == 0:  # BASE CASE
+        draw_triangle(t, length, color)
+
+    else:  # RECURSIVE CASE
+
+        # Bottom-left triangle
+        sierpinski_triangle(t, length / 2, depth - 1, color)
+
+        # Bottom-right triangle
+        t.forward(length / 2)
+        sierpinski_triangle(t, length / 2, depth - 1, color)
+        t.backward(length / 2)
+
+        # Top triangle
+        t.left(60)
+        t.forward(length / 2)
+        t.right(60)
+
+        sierpinski_triangle(t, length / 2, depth - 1, color)
+
+        # Return turtle to original position
+        t.left(60)
+        t.backward(length / 2)
+        t.right(60)
+
+def get_valid_depth():
+
+    while True:
+        try:
+            depth = int(input("Enter recursion depth (1-5): "))
+
+            if 1 <= depth <= 5:
+                return depth
+            else:
+                print("Depth must be between 1 and 5.")
+
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+# FUNCTION draw_triangle(turtle, length, color):
+#   Begin fill with chosen color.
+#   Repeat 3 times:
+#       Move forward length.
+#       Turn left 120 degrees.
+#   End fill.
+
+def draw_triangle(t, length, color):
+
+    t.fillcolor(color)
+    t.begin_fill()
+
+    for _ in range(3):
+        t.forward(length)
+        t.left(120)
+
+    t.end_fill()
+
+main()
