@@ -1,14 +1,14 @@
 # LV 1st Game System
 
 # Function advance_time():
-
+def advance_time():
     # Increase hour by 1
 
     # If hour == 24:
         # Reset hour to 0
         # Increase day by 1
 
-
+    
 # Function random_event(pet):
 
     # Generate random number

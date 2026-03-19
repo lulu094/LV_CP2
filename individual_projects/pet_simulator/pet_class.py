@@ -12,7 +12,9 @@
     # health
     # level
     # skills
-
+class_pet = {
+    "Atributes"
+}
     # Constructor method:
         # Set name and species
         # Set age = 0

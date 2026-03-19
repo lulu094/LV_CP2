@@ -12,6 +12,7 @@
 # Set current_pet to new pet
 
 # While game_running is True:
+while game_running is True:
 
     # Display main menu
     # Show current pet info
@@ -21,6 +22,8 @@
 
     # If choice == 1:
         # Call feeding_menu(current_pet)
+    if choice == 1
+        feeding_menu(current_pet)
 
     # Else if choice == 2:
         # Call play_with_pet(current_pet)
@@ -51,3 +54,5 @@
 
 # End program
 # Print goodbye message
+
+#Do pseudocode for extra credit
