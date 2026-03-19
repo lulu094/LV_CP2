@@ -1,15 +1,53 @@
-# LV 1st Main - Pet Simulator
-# Welcom the user
-# ask user for a pet name
-# give them a list of species they can choose from
-# set age for 0 months
-# Tell them their pet has been done
+# LV 1st Main Pet Simulator
 
-#[1] Feed Pet
-#[2] Play with Pet  
-#[3] Put Pet to Sleep
-#[4] Check Status
-#[5] Pet Management
-#[6] Save Game
-#[7] Load Game
-#[8] Quit
+# Start program
+# Create empty list of pets
+# Set current_pet to None
+# Set game_running to True
+# Set time to Day 1, 08:00
+
+# Display welcome message
+
+# Call function to create first pet
+# Set current_pet to new pet
+
+# While game_running is True:
+
+    # Display main menu
+    # Show current pet info
+    # Show current time
+
+    # Ask user for choice
+
+    # If choice == 1:
+        # Call feeding_menu(current_pet)
+
+    # Else if choice == 2:
+        # Call play_with_pet(current_pet)
+
+    # Else if choice == 3:
+        # Call put_pet_to_sleep(current_pet)
+
+    # Else if choice == 4:
+        # Call display_status(current_pet)
+
+    # Else if choice == 5:
+        # Call pet_management()
+
+    # Else if choice == 6:
+        # Call save_game()
+
+    # Else if choice == 7:
+        # Call load_game()
+
+    # Else if choice == 8:
+        # Set game_running to False
+
+    # Else:
+        # Print "Invalid input"
+
+    # Call advance_time()
+    # Call random_event(current_pet)
+
+# End program
+# Print goodbye message
