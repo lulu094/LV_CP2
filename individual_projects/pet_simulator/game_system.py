@@ -6,7 +6,7 @@ from random import random
 
 def advance_time():
     # Increase hour by 1
-
+    hour += 1
     # If hour == 24:
         # Reset hour to 0
         # Increase day by 1

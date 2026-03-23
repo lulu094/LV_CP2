@@ -33,7 +33,7 @@ def main():
 
         # If choice == 1:
         # Call feeding_menu(current_pet)
-        if choice == 1
+        if choice == 1:
             feeding_menu(current_pet)
 
         # Else if choice == 2:

@@ -31,7 +31,7 @@ def feeding_menu(pet):
         pet.feed("treat")
     # Elif choice == 4:
         # Call pet.feed("home")
-    elif choice == 4
+    elif choice == 4:
         pet.feed("home")
     # Else:
         # Print "Invalid input"
