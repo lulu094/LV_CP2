@@ -37,6 +37,17 @@ class Pet:
         # Set health = 100
         # Set level = 1
         # Set skills = empty list
+class method :
+    def __init__(self, name, species):  
+        self.name = name
+        self.species = species
+        self.age = 0
+        self.hunger = 50
+        self.happiness = 50
+        self.energy = 50
+        self.health = 100
+        self.level = 1
+        self.skills = []
     
 
     # Method feed(food_type):
@@ -47,6 +58,25 @@ class Pet:
             # Increase hunger more
             # Increase happiness more
         # Limit values to 100
+    mehod feed(self, food_type)
+        if food_type == "basic":
+            self.hunger += 20
+            self.happiness += 5
+        elif food_type == "premium":
+            self.hunger += 40
+            self.happiness += 15
+        elif food_type == "treat":
+            self.hunger += 10
+            self.happiness += 10
+        elif food_type == "home":
+            self.hunger += 30
+            self.happiness += 20
+        
+        # Limit values to 100
+        if self.hunger > 100:
+            self.hunger = 100
+        if self.happiness > 100:
+            self.happiness = 100
 
     # Method play():
         # Increase happiness

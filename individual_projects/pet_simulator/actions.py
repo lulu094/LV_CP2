@@ -93,8 +93,13 @@ def pet_management():
 def create_pet():
     # Ask user for name
     # Ask user for species
+    name = input("Enter pet name: ")
+    species = input("Enter pet species: ")
 
     # Create new Pet object
+    new_pet = Pet(name, species)
     # Add pet to list
+    pets.append(new_pet)
 
     # Return new pet
+    return new_pet

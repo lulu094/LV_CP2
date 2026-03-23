@@ -5,6 +5,7 @@
 # Set current_pet to None
 # Set game_running to True
 # Set time to Day 1, 08:00
+
 pets = []
 current_pet = None
 game_running = True
@@ -41,31 +42,48 @@ def main():
         elif choice == 2:
             play_with_pet(current_pet)
 
-        # Else if choice == 3:
+        # Elif choice == 3:
         # Call put_pet_to_sleep(current_pet)
+        elif choice == 3:
+            put_pet_to_sleep(current_pet)
     
-        # Else if choice == 4:
+        # Elif choice == 4:
         # Call display_status(current_pet)
+        elif choice == 4:
+            display_status(current_pet)
 
-        # Else if choice == 5:
+        # Elif choice == 5:
         # Call pet_management()
+        elif choice == 5:
+            pet_management()
 
-        # Else if choice == 6:
+        # Elif choice == 6:
         # Call save_game()
+        elif choice == 6:
+            save_game()
 
-        # Else if choice == 7:
+        # Elif choice == 7:
         # Call load_game()
+        elif choice == 7:
+            load_game()
 
-        # Else if choice == 8:
+        # Elif choice == 8:
         # Set game_running to False
+        elif choice == 8:
+            game_running = False
 
         # Else:
         # Print "Invalid input"
+        else:
+            print("Invalid input")
 
         # Call advance_time()
         # Call random_event(current_pet)
+        advance_time()
+        random_event(current_pet)
 
 # End program
 # Print goodbye message
+print("Thanks for playing the Pet Simulator Game! Goodbye!")
 
 #Do pseudocode for extra credit
