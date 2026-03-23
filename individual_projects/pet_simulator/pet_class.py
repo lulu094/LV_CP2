@@ -12,9 +12,22 @@
     # health
     # level
     # skills
-class_pet = {
-    "Atributes"
-}
+class Pet:
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+        self.age = 0
+        self.hunger = 50
+        self.happiness = 50
+        self.energy = 50
+        self.health = 100
+        self.level = 1
+        self.skills = []
+    def __str__(self):
+        return f"Name : {self.name}\nSpecies : {self.species}\nAge : {self.age}\nHunger : {self.hunger}\nHappiness : {self.happiness}\nEnergy : {self.energy}\nHealth : {self.health}\nLevel : {self.level}\nSkills : {', '.join(self.skills)}"
+    
+
+
     # Constructor method:
         # Set name and species
         # Set age = 0
@@ -24,6 +37,7 @@ class_pet = {
         # Set health = 100
         # Set level = 1
         # Set skills = empty list
+    
 
     # Method feed(food_type):
         # If food_type is basic:
