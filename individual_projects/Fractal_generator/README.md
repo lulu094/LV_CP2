@@ -41,4 +41,4 @@ Each recursive call reduces the triangle size and depth until the base case is r
 
 ## Author
 
-Lucciana Venancio Mostaceli
+lulu094
