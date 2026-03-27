@@ -1,5 +1,5 @@
 # LV 1st Grade Management
-
+import csv
 
 # Function add_grade_to_student():
 #   Display list of students with ID and Name
@@ -15,3 +15,10 @@
 #           Display "Invalid grade. Enter 0-100."
 #   Else:
 #       Display "Student ID not found"
+def add_grade_to_student():
+    if student_found:
+        if 0<= grade <= 100:  
+            student.add_grade(grade)
+            print("Grade added successfully")
+            # current average and letter grade
+    

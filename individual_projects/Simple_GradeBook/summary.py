@@ -1,10 +1,13 @@
 # LV 1st Summary
+
 # Function view_student_record():
 #   Input student_id
 #   Find student by ID
 #   If found: call student.display_info()
 #   Else: display "Student not found"
 
+def view_student_record():
+    
 # Function view_all_students():
 #   For each student in GradeBook:
 #       Display ID, Name, Average, Letter Grade

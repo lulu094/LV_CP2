@@ -24,6 +24,16 @@
 #       display_info():
 #           Display name, ID, grades, average, letter grade
 
+class Student:
+    Attributes:
+    name
+    student_id
+    grades (empty list)
+    grade_level
+    Methods:
+    add_grade(grade):
+
+
 # Function add_new_student():
 #   Input name
 #   Input student_id

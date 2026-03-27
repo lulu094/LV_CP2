@@ -8,6 +8,15 @@
 # [5] Class Summary
 # [6] Exit
 
+choices = {
+[1] = "Add New Student",
+[2] = "Add Grade to Student",
+[3] = "View Student Record",
+[4] = "View All Students",
+[5] = "Class Summary",
+[6] = "Exit"
+}
+
 # function main
 # Welcome
 # Ask user to choose from choices
@@ -29,3 +38,23 @@
 # display Invalid input
 
 # call main
+
+def main():
+    if choice == 1:
+        add_new_student()
+    elif choice == 2:
+        grade_student()
+    elif choice == 3:
+        view_all_student_record()
+    elif choice == 4:
+        view_all_students()
+    elif choice == 5:
+        class_summary()
+    elif choice == 6:
+        exit
+        print("Goodbye thank you for using simple grade !!!")
+        print("# Would you like to use simple grade book y/n:")
+    else
+        print("Invalid input")
+
+    
