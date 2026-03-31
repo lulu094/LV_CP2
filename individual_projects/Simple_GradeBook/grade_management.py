@@ -1,5 +1,4 @@
 # LV 1st Grade Management
-import csv
 
 # Function add_grade_to_student():
 #   Display list of students with ID and Name
@@ -15,42 +14,53 @@ import csv
 #           Display "Invalid grade. Enter 0-100."
 #   Else:
 #       Display "Student ID not found"
+# grade_management.py
+# LV 1st Grade Management
 
-def add_grade_to_student(gradebook):
-    # Display list of students with ID and Name
+# grade_management.py
+# grade_management.py
+import csv
+
+def save_gradebook_to_csv(gradebook, csv_path="individual_projects/Simple_GradeBook/grade.csv"):
+    with open(csv_path, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["student_id", "name", "grade_level", "grades"])
+        for student in gradebook.students:
+            grades_str = ",".join(map(str, student.grades))
+            writer.writerow([student.student_id, student.name, student.grade_level, grades_str])
+
+
+def add_grade_to_student(gradebook, csv_path="individual_projects/Simple_GradeBook/grade.csv"):
+    if not gradebook.students:
+        print("No students found.")
+        return
+
     print("List of students:")
     for student in gradebook.students:
         print(f"ID: {student.student_id}, Name: {student.name}")
-    
-    # Input student ID
+
     try:
         student_id = int(input("Enter student ID: "))
     except ValueError:
         print("Invalid input. Please enter a number.")
         return
-    
-    # Find student in GradeBook
-    student_found = None
-    for student in gradebook:
-        if student.student_id == student_id:
-            student_found = student
-            break
-    
-    if student_found:
-        # Input grade
-        try:
-            grade = float(input("Enter grade (0-100): "))
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-            return
-        
-        # Validate grade
-        if 0 <= grade <= 100:
-            student_found.add_grade(grade)
-            print("Grade added successfully!")
-            print(f"Current average: {student_found.calculate_average():.2f}")
-            print(f"Letter grade: {student_found.get_letter_grade()}")
-        else:
-            print("Invalid grade. Enter 0-100.")
+
+    student_found = next((s for s in gradebook.students if s.student_id == student_id), None)
+    if not student_found:
+        print("Student ID not found.")
+        return
+
+    try:
+        grade = float(input("Enter grade (0-100): "))
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return
+
+    if 0 <= grade <= 100:
+        student_found.add_grade(grade)
+        print("Grade added successfully!")
+        print(f"Current average: {student_found.calculate_average():.2f}")
+        print(f"Letter grade: {student_found.get_letter_grade()}")
+        save_gradebook_to_csv(gradebook, csv_path)
     else:
-        print("Student ID not found.")    
+        print("Invalid grade. Enter 0-100.")

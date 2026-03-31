@@ -20,11 +20,8 @@
 # View a single student record
 def view_student_record(gradebook):
     student_id = int(input("Enter student ID: "))
-    student_found = None
-    for student in gradebook:
-        if student.student_id == student_id:
-            student_found = student
-            break
+    student_found = gradebook.find_student(student_id)
+
     if student_found:
         student_found.display_info()
     else:
@@ -33,21 +30,18 @@ def view_student_record(gradebook):
 
 # View all students
 def view_all_students(gradebook):
-    for student in gradebook.students:    
+    if not gradebook.students:
+        print("No students found.")
+        return
+
+    for student in gradebook.students:
         avg = student.calculate_average()
         letter = student.get_letter_grade()
         print(f"ID: {student.student_id}, Name: {student.name}, Average: {avg:.2f}, Letter Grade: {letter}")
-
-
-# Class summary
 def class_summary(gradebook):
-    total_students = len(gradebook)
-    averages = [student.calculate_average() for student in gradebook]
-    highest_grade = max(averages) if averages else 0
-    lowest_grade = min(averages) if averages else 0
-    class_avg = sum(averages)/total_students if total_students > 0 else 0
+    total_students = len(gradebook.students)
 
     print(f"Total Students: {total_students}")
-    print(f"Class Average: {class_avg:.2f}")
-    print(f"Highest Average: {highest_grade:.2f}")
-    print(f"Lowest Average: {lowest_grade:.2f}")
+    print(f"Class Average: {gradebook.class_average():.2f}")
+    print(f"Highest Average: {gradebook.highest_average():.2f}")
+    print(f"Lowest Average: {gradebook.lowest_average():.2f}")

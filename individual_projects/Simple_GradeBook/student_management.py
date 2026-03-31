@@ -36,6 +36,13 @@
 # Student Management
 
 # Student class
+# student_management.py
+
+# student_management.py
+
+# student_management.py
+# student_management.py
+
 class Student:
     def __init__(self, name, student_id, grade_level=None):
         self.name = name
@@ -43,17 +50,14 @@ class Student:
         self.grades = []
         self.grade_level = grade_level
 
-    # Add a grade
     def add_grade(self, grade):
         self.grades.append(grade)
 
-    # Calculate average
     def calculate_average(self):
         if self.grades:
             return sum(self.grades) / len(self.grades)
         return 0
 
-    # Get letter grade
     def get_letter_grade(self):
         avg = self.calculate_average()
         if avg >= 90:
@@ -67,21 +71,31 @@ class Student:
         else:
             return "F"
 
-    # Display student information
     def display_info(self):
         print(f"Name: {self.name}")
         print(f"ID: {self.student_id}")
-        print(f"Grades: {self.grades}")
+        print(f"Grades: {self.grades if self.grades else 'No grades available.'}")
         print(f"Average: {self.calculate_average():.2f}")
         print(f"Letter Grade: {self.get_letter_grade()}")
+        print(f"Academic Status: {self.get_academic_status()}")
         if self.grade_level:
             print(f"Grade Level: {self.grade_level}")
 
+    def get_academic_status(self):
+        avg = self.calculate_average()
+        if avg >= 90:
+            return "Honor Student"
+        elif avg >= 70:
+            return "Good Standing"
+        else:
+            return "At Risk"
 
-# Function to add new student
-def add_new_student(gradebook):
+
+def add_new_student(gradebook, csv_path="individual_projects/Simple_GradeBook/grade.csv"):
+    # Local import to avoid circular import
+    from grade_management import save_gradebook_to_csv
+
     name = input("Enter student name: ")
-    
     try:
         student_id = int(input("Enter student ID: "))
     except ValueError:
@@ -91,9 +105,8 @@ def add_new_student(gradebook):
     grade_level = input("Enter grade level (optional, press enter to skip): ")
     grade_level = grade_level if grade_level else None
 
-    # Create new Student object and add to gradebook
     new_student = Student(name, student_id, grade_level)
-    gradebook.append(new_student)
+    gradebook.add_student(new_student)
     print("Student added successfully!")
 
-
+    save_gradebook_to_csv(gradebook, csv_path)
