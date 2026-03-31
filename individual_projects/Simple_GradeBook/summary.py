@@ -33,7 +33,7 @@ def view_student_record(gradebook):
 
 # View all students
 def view_all_students(gradebook):
-    for student in gradebook:
+    for student in gradebook.students:    
         avg = student.calculate_average()
         letter = student.get_letter_grade()
         print(f"ID: {student.student_id}, Name: {student.name}, Average: {avg:.2f}, Letter Grade: {letter}")

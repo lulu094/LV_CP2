@@ -33,8 +33,8 @@
 # call main
 
 
- def main():
-    gradebook = []  # local list to store students
+def main():
+    gradebook = GradeBook()
     
     print("Welcome to Simple Grade Book!")
     

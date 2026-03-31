@@ -19,7 +19,7 @@ import csv
 def add_grade_to_student(gradebook):
     # Display list of students with ID and Name
     print("List of students:")
-    for student in gradebook:
+    for student in gradebook.students:
         print(f"ID: {student.student_id}, Name: {student.name}")
     
     # Input student ID
