@@ -16,11 +16,12 @@ label.config(fg = "blue", background = "orange")
 root.count = 0
 def add():
     root.count += 1
-    
+    num["text"] = root.count
 tk.Label(root, text = root.count).pack()
 btn = tk.Button(root, text = "ADD", command = add)
 btn.pack()
-
+num = tk.Label(root, text = "0")
+num.pack()
 
 label.pack()
 image = tk.PhotoImage(file = "Notes/img/bread.gif")
