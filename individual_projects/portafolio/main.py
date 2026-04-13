@@ -79,24 +79,16 @@
 #
 #     # start GUI loop
 #     # root.mainloop()
-# ================================
-# MAIN.PY - PERSONAL PORTFOLIO
-# ================================
 
-# ================================
-# MAIN.PY - PERSONAL PORTFOLIO
-# ================================
 
 import tkinter as tk
 
 from calculator import Project1Page
-from page2 import Project2Page
-from page3 import Project3Page
+from data_tracker import Project2Page
+from user_input import Project2Page
 
 
-# ----------------------------
-# MAIN MENU FUNCTION (BEGINNER STYLE)
-# ----------------------------
+# MAIN MENU FUNCTION
 def menu():
     root = tk.Tk()
     root.title("Personal Portfolio")
@@ -114,9 +106,8 @@ def menu():
     )
     instructions.pack(pady=10)
 
-    # ----------------------------
-    # BUTTONS (OPEN PROJECT PAGES)
-    # ----------------------------
+  
+    # BUTTONS
 
     def open_project1():
         win = tk.Toplevel(root)
@@ -139,7 +130,5 @@ def menu():
     root.mainloop()
 
 
-# ----------------------------
-# START PROGRAM (IMPORTANT REQUIREMENT)
-# ----------------------------
+
 menu()
