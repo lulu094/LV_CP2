@@ -1,6 +1,4 @@
-# ================================
-# PROJECT 1 PAGE - PSEUDOCODE
-# ================================
+# Calculator
 
 # import tkinter as tk
 # from tkinter import ttk
@@ -41,28 +39,19 @@
 #     def show_info(self):
 #         # updates GUI text area with project description
 #         # ensures info is shown BEFORE project execution
-# ================================
-# PROJECT 1 PAGE
-# ================================
-
-# ================================
-# PROJECT 1 PAGE
-# ================================
 
 import tkinter as tk
 import csv
 import os
 
 
-class Project1Page:
+class Calculator:
     def __init__(self, root):
         self.root = root
-        self.root.title("Project 1")
+        self.root.title("Calculator")
 
-        # Title
-        tk.Label(root, text="Project 1", font=("Arial", 14)).pack(pady=10)
+        tk.Label(root, text="Calculator", font=("Arial", 14)).pack(pady=10)
 
-        # Description (SHOWN BEFORE RUNNING)
         self.info = tk.Text(root, height=10, width=60)
         self.info.pack()
 
@@ -76,20 +65,16 @@ class Project1Page:
             "- Managing multiple windows\n"
         )
 
-        # Run Button
-        tk.Button(root, text="Run Project 1", command=self.run_project).pack(pady=10)
+        tk.Button(root, text="Run", command=self.run_project).pack(pady=10)
 
     def run_project(self):
 
-        # make sure folder exists
         os.makedirs("individual_projects/portafolio", exist_ok=True)
 
         file_path = "individual_projects/portafolio/data.csv"
 
-        # write to CSV
         with open(file_path, "a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(["Project 1", "Ran successfully"])
+            writer.writerow(["Calculator", "Ran successfully"])
 
-        # show result in GUI
-        tk.Label(self.root, text="Project 1 executed!", fg="green").pack()
+        tk.Label(self.root, text="Calculator executed!", fg="green").pack()

@@ -1,18 +1,7 @@
-# ================================
-# MAIN.PY - PERSONAL PORTFOLIO GUI
-# ================================
+# LV 1st Main
 
 # import tkinter as tk
 # from tkinter import ttk
-
-# import project1_page
-# import project2_page
-# import project3_page
-
-# PURPOSE:
-# This is the MAIN MENU (home screen) of the portfolio.
-# It allows users to select a project using buttons and opens each project page.
-# It also ensures project descriptions are shown BEFORE execution.
 
 # class PortfolioApp:
 #     def __init__(self, root):
@@ -22,18 +11,16 @@
 #
 #         # create main frame (container for all widgets)
 #
-#         # =========================
+#        
 #         # INTRODUCTION SECTION
-#         # =========================
+#       
 #         # create label: "Welcome to My Programming Portfolio"
 #
 #         # create instruction label:
 #         # "Click a project button below to view details and run the project.
 #         # Each project shows a description before execution."
 #
-#         # =========================
 #         # PROJECT BUTTON SECTION
-#         # =========================
 #
 #         # create button: Project 1
 #         # name: project1_btn
@@ -50,9 +37,8 @@
 #         # create button: Exit
 #         # command: root.quit
 #
-#     # =========================
+#     
 #     # EVENT HANDLERS
-#     # =========================
 #
 #     def open_project1(self):
 #         # open new window (tk.Toplevel)
@@ -66,27 +52,14 @@
 #     def open_project3(self):
 #         # open new window (tk.Toplevel)
 #         # call Project3Page(new_window)
-#
-# # ================================
-# # MAIN PROGRAM START
-# # ================================
-#
-# if __name__ == "__main__":
-#     # create root window
-#     # root = tk.Tk()
-#
-#     # launch PortfolioApp(root)
-#
-#     # start GUI loop
-#     # root.mainloop()
 
 
+from logging import root
 import tkinter as tk
 
-from calculator import Project1Page
-from data_tracker import Project2Page
-from user_input import Project2Page
-
+from calculator import Calculator
+from data_tracker import DataTracker
+from user_input import UserInput
 
 # MAIN MENU FUNCTION
 def menu():
@@ -111,15 +84,15 @@ def menu():
 
     def open_project1():
         win = tk.Toplevel(root)
-        Project1Page(win)
+        Calculator(win)
 
     def open_project2():
         win = tk.Toplevel(root)
-        Project2Page(win)
+        UserInput(win)
 
     def open_project3():
         win = tk.Toplevel(root)
-        Project3Page(win)
+        DataTracker(win)
 
     tk.Button(root, text="Project 1", width=20, command=open_project1).pack(pady=5)
     tk.Button(root, text="Project 2", width=20, command=open_project2).pack(pady=5)

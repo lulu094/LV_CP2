@@ -1,6 +1,4 @@
-# ================================
-# PROJECT 2 PAGE - PSEUDOCODE
-# ================================
+# User Input Page 
 
 # import tkinter as tk
 # from tkinter import ttk
@@ -39,20 +37,19 @@
 #     def update_description(self):
 #         # updates the text area with project details
 #         # ensures user reads info before execution
-# ================================
-# PROJECT 2 PAGE
-# ================================
+
 
 import tkinter as tk
 import csv
+import os
 
 
-class Project2Page:
+class UserInput:
     def __init__(self, root):
         self.root = root
-        self.root.title("Project 2")
+        self.root.title("User Input")  
 
-        tk.Label(root, text="Project 2", font=("Arial", 14)).pack(pady=10)
+        tk.Label(root, text="User Input Project", font=("Arial", 14)).pack(pady=10)
 
         self.info = tk.Text(root, height=10, width=60)
         self.info.pack()
@@ -72,7 +69,13 @@ class Project2Page:
     def run_project(self):
         result = "Project 2 executed successfully!"
 
-        with open("portfolio_log.csv", "a", newline="") as file:
+        # ✔ correct folder path
+        os.makedirs("individual_projects/portafolio", exist_ok=True)
+
+        file_path = "individual_projects/portafolio/data.csv"
+
+        # ✔ write to correct CSV
+        with open(file_path, "a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow(["Project 2", result])
 

@@ -1,11 +1,7 @@
-# ================================
-# PROJECT 3 PAGE - PSEUDOCODE
-# ================================
-
+# LV Data Tracker
 # import tkinter as tk
 # from tkinter import ttk
 
-# PURPOSE:
 # This page displays Project 3 details and allows execution from GUI
 # after the user reads the description.
 
@@ -34,25 +30,16 @@
 #     def load_project_info(self):
 #         # ensures project info is displayed FIRST
 #         # populates GUI text widget with description content
-# ================================
-# PROJECT 3 PAGE
-# ================================
-
-# ================================
-# PROJECT 3 PAGE
-# ================================
-
-import tkinter as tk
 import csv
 import os
+import tkinter as tk
 
-
-class Project3Page:
+class DataTracker:
     def __init__(self, root):
         self.root = root
-        self.root.title("Project 3")
+        self.root.title("Data Tracker")  
 
-        tk.Label(root, text="Project 3", font=("Arial", 14)).pack(pady=10)
+        tk.Label(root, text="Data Tracker", font=("Arial", 14)).pack(pady=10)
 
         self.info = tk.Text(root, height=10, width=60)
         self.info.pack()
@@ -67,11 +54,10 @@ class Project3Page:
             "- Organizing multiple functions cleanly\n"
         )
 
-        tk.Button(root, text="Run Project 3", command=self.run_project).pack(pady=10)
+        tk.Button(root, text="Run", command=self.run_project).pack(pady=10)
 
     def run_project(self):
-
-        result = "Project 3 executed successfully!"
+        result = "Data Tracker executed successfully!"
 
         # make sure folder exists
         os.makedirs("individual_projects/portafolio", exist_ok=True)
@@ -81,7 +67,6 @@ class Project3Page:
         # write to CSV
         with open(file_path, "a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(["Project 3", result])
+            writer.writerow(["Data Tracker", result])
 
-        # show result in GUI
         tk.Label(self.root, text=result, fg="green").pack()
