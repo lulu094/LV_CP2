@@ -94,9 +94,9 @@ def menu():
         win = tk.Toplevel(root)
         DataTracker(win)
 
-    tk.Button(root, text="Project 1", width=20, command=open_project1).pack(pady=5)
-    tk.Button(root, text="Project 2", width=20, command=open_project2).pack(pady=5)
-    tk.Button(root, text="Project 3", width=20, command=open_project3).pack(pady=5)
+    tk.Button(root, text="Calculator", width=20, command=open_project1).pack(pady=5)
+    tk.Button(root, text="User Input", width=20, command=open_project2).pack(pady=5)
+    tk.Button(root, text="Data Tracker", width=20, command=open_project3).pack(pady=5)
 
     tk.Button(root, text="Exit", width=20, command=root.destroy).pack(pady=20)
 
